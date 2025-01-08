@@ -1,0 +1,115 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Mobile.master.cs" Inherits="Police_Crime_Diary.Site_Mobile" %>
+<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div class="container-fluid position-relative h-100 w-100">
+            <div class="container-fluid">
+                <div class="row text-center mb-2" style="padding:0px;">
+                    <img src="/Content/images/NPF-weB-banner.jpg" class="w-100 h-100" />
+                </div>
+                <div class="row mb-2" runat="server" id="low_users">
+                    <div class="col"><a href="~/" runat="server" class="btn border mb-2">Home</a></div>
+                    <div class="col"><a href="~/TodayCrime.aspx" runat="server" class="btn border mb-2">Today&nbsp;Crime</a></div>
+                    <div class="col"><a href="~/ReportCrime" runat="server" class="btn border mb-2">Report&nbsp;Crime</a></div>
+                    <div class="col"><a href="~/CrimeDiary" runat="server" class="btn border mb-2">Crime&nbsp;Diary</a></div>
+                    <div class="col"><a href="~/BailAction.aspx" runat="server" class="btn border mb-2">Bail&nbsp;Action</a></div>
+                    <div class="col"><a href="~/CourtAction.aspx" runat="server" class="btn border mb-2">Court&nbsp;Action</a></div>
+                    <div class="col"><a href="~/Inbox.aspx" runat="server" class="btn border mb-2">Inbox</a></div>
+                    <div class="col"><div class="btn border mb-2 logout" runat="server" id="low_logout" >Log out</div></div>
+                </div>
+                <div class="row mb-2" runat="server" id="high_users" style="display: none;">
+                    <div class="col"><a href="~/" runat="server" class="btn border mb-2">Home</a></div>
+                    <div class="col"><a href="~/Charge.aspx" runat="server" class="btn border mb-2">Charge</a></div>
+                    <div class="col"><a href="~/Transfer.aspx" runat="server" class="btn border mb-2">Transfer</a></div>
+                    <div class="col"><a href="~/ReadCrime" runat="server" class="btn border mb-2">Read&nbsp;Crime</a></div>
+                    <div class="col"><a href="~/ReplyBail.aspx" runat="server" class="btn border mb-2">Reply&nbsp;Bail</a></div>
+                    <div class="col"><a href="~/Inbox.aspx" runat="server" class="btn border mb-2">Inbox</a></div>
+                    <div class="col"><div class="btn border mb-2 logout" runat="server" id="high_logout" >Log out</div></div>
+
+                    <a href="~/Police.aspx" runat="server" id="police_btn" class="btn border col mx-1">Police List</a>
+                    <a href="~/BailMenu.aspx" runat="server" id="bail" class="btn border col mx-1">Bail Menu</a>
+                </div>
+
+            </div>
+            <div class="row mx-2">
+                <div class="col-md-2 d-flex align-items-center" style="background-color: yellow;">
+                    <div class="text-center py-2">
+                        <img src="/Content/images/igp.jpg" class="w-100" />
+                    </div>
+                </div>
+                <div class="col-md-8 py-3" style="overflow: auto; background-color: #f0f2f5;">
+                    <asp:PlaceHolder runat="server" ID="master_message" />
+                    <div class="container-fluid p-3 rounded my-2" style="background-color: white;">
+                        <h2><b><i>Welcome!!!</i></b> you are <span class="text-danger fs-4" runat="server" id="curr_user">Guest</span></h2>
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="col-md-2 pt-5 bg-primary">
+                    <div class="container-fluid">
+                        <p class="text-center">Total Number of Reported Crime<br /><span class="fw-bold btn btn-success" runat="server" id="crime_count">0</span></p>
+                    </div>
+                    <div class="container-fluid" id="unregistered" runat="server">
+                        <div class="row p-0 mb-2">
+                            <div class="col p-0">
+                                <div class="form-group w-100">
+                                    <label for="s_username" class="fs-6">Username: </label>
+                                    <input type="text" id="s_username" class="form-control w-100" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-0 mb-2">
+                            <div class="col p-0">
+                                <div class="form-group w-100">
+                                    <label for="s_password" class="fs-6">Password: </label>
+                                    <input type="password" id="s_password" class="form-control w-100" />
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="text-center mb-2">
+                            <div class="btn btn-success mx-auto" id="s_login">Log in</div>
+                        </div>
+                        <div class="lead mb-2">
+                            If you are not Registered, you can not report a Crime and some functions will be denied you. Register today! Lets' <a href="~/Register.aspx" class="btn btn-success" runat="server">Go</a>
+                        </div>
+                        
+                    </div>
+                    <div class="lead mb-2" id="registered" runat="server" style="display: none;">
+                        We respect your Privacy. Please help NPF and Nigeria by reporting a crime.
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <footer class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 order-1 text-center">
+                        <div class="p-2">
+                            <img src="/Content/images/Nigeria%20Coat%20of%20Arm.jpg" style="width: 80px;" />
+                        </div>
+                    </div>
+                    <div class="col-md-8 order-3">
+                        <h3 class="text-center fw-bold">A Project By Umar Farooq</h3>
+                        <p class="text-center">&copy; <%: DateTime.Now.Year %> - Umar Farooq</p>
+                    </div>
+                    <div class="col-md-2 order-2 text-center">
+                        <div class="p-2">
+                            <img src="/Content/images/policebadge.jpg" style="width: 80px;" />
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <friendlyUrls:ViewSwitcher runat="server" />
+        </div>
+    </form>
+</body>
+</html>
